@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <title id="pageTitle">Phoneme inventory generator</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Artur A.">
+
+	<script src="phongen.js"></script>
+
+	<style>
+		body {font-family: sans-serif;}
+		h1, form {text-align: center;}
+		a {text-decoration: none;}
+		.button {
+ 			 background-color: #555555;
+ 			 border: none;
+ 			 color: white;
+ 			 padding: 5px 10px;
+ 			 text-align: center;
+ 			 text-decoration: none;
+ 			 display: inline-block;
+ 			 border-radius: 4px;
+ 		}
+ 		.button:hover {
+ 			 background-color: #999999;
+ 		}
+ 		textarea {
+			width: 80%;
+			border: 2px solid black;
+			border-radius: 4px;
+		}
+		input {
+			text-align: center;
+		}
+		input[type=text] {
+			width: 20px;
+  			border: 2px solid #555555;
+  			border-radius: 4px;
+  			padding: 5px 10px;
+		}
+		p.message {color: #555555;}
+		.label {
+			padding: 0px 5px;
+		}
+		#letter-label, #output-label {
+			font-weight: bold;
+		}
+		}
+		label, textarea {
+			display:inline-block;
+  			vertical-align:middle;
+		}
+		.nowrap {
+   			white-space: nowrap;
+		}
+		.settings-pane {
+			border: 2px solid #555555;
+  			border-radius: 4px;
+  			/*width: 80%;*/
+  			margin-right: 10%;
+  			margin-left: 10%;
+  			display: inline-block;
+  			padding: 10px 5px 10px 5px;
+		}
+		/* TODO: custom checkbox and radio button style */
+		.halfcol {
+			float: left;
+  			width: 50%;
+		}
+		.doublecolrow:after { /* Clear floats after the columns */
+			content: "";
+  			display: table;
+  			clear: both;
+		}
+	</style>
+
+  </head>
+
+  <body>
+  <h1>Phoneme inventory generator</h1>
+	<form action="" name="mainForm">
+		<!--<span class="label" id="letter-label">
+			Input letters lists, separated by commas
+		</span>
+		<div class="doublecolrow">
+		<div class="halfcol"><p>
+			<span class="label" id="letter-label">C</span>
+			<textarea rows="2" class="letterstextarea" name="inC"></textarea>
+		</p>
+		<p>
+			<span class="label" id="letter-label">V</span>
+			<textarea rows="2" class="letterstextarea" name="inV"></textarea>
+		</p></div>
+		<div class="halfcol"><p>
+			<span class="label" id="letter-label">I</span>
+			<textarea rows="2" class="letterstextarea" name="inI"></textarea>
+		</p>
+		<p>
+			<span class="label" id="letter-label">M</span>
+			<textarea rows="2" class="letterstextarea" name="inM"></textarea>
+		</p>
+		<p>
+			<span class="label" id="letter-label">F</span>
+			<textarea rows="2" class="letterstextarea" name="inF"></textarea>
+		</p></div>
+		</div>
+		<p>
+			<span class="label" id="structure-label">Syllable structure</span>
+			<textarea rows="1" name="struct" id="struct-area"></textarea>
+		</p>-->
+		<div class="settings-pane">
+			<div class="doublecolrow">
+				<!--<span class="label" id="param-label">Words to generate:</span>
+				<input type="text" name="wordsNum" value="15"></text>-->
+				<div class="halfcol">
+					<span class="nowrap">
+						<span class="label" id="param-label">Min. consonants:</span>
+						<input type="text" name="minC" value="5"></text>
+					</span>
+					<span class="nowrap">
+						<span class="label" id="param-label">Max. consonants:</span>
+						<input type="text" name="maxC" value="20"></text>
+					</span>
+				</div>
+				<div class="halfcol">
+					<span class="nowrap">
+						<span class="label" id="param-label">Min. vowels:</span>
+						<input type="text" name="minV" value="3"></text>
+					</span>
+					<span class="nowrap">
+						<span class="label" id="param-label">Max. vowels:</span>
+						<input type="text" name="maxV" value="10"></text>
+					</span>
+				</div>
+			</div>
+			<p>
+				<span class="nowrap">
+					<input type="radio" id="newline" name="source" value="simple" 
+						checked>
+					<label for="simple">Simple</label>
+					<input type="radio" id="comma" name="source" value="ipa">
+					<label for="ipa">Full IPA</label>
+				</span>
+				<!--&bull;
+				<span class="nowrap">
+					<span class="label" id="param-label">
+						<label for="hyphenate">Hyphenate between syllables:</label>
+					</span>
+					<input type="checkbox" id="hyphenate" class="checkmark">
+				</span>
+				<span class="nowrap">
+					<span class="label" id="param-label">
+						<label for="hyphenate">Exclude duplicates:</label>
+					</span>
+					<input type="checkbox" id="noduplicates" class="checkmark" checked>
+				</span>
+			</p>-->
+		</div>
+		<p>
+			<input type=button class="button" value="Generate inventory" 
+				onClick="generate()"/>
+			<!--
+			<input type=button class="button" value="Try example" onClick="example()"/>
+			-->
+			<input type=button class="button" value="Reset" onClick="reset()"/>
+			&bull;
+			<a href="https://github.com/aaa2016/phoneme-inventory-generator" 
+				target="_blank">Help</a>
+		</p>
+		<div class="doublecolrow">
+				<div class="halfcol">
+					<div class="label" id="output-label">Consonant output</div>
+					<textarea rows="5" name="outC" id="outC"></textarea>
+				</div>
+				<div class="halfcol">
+					<div class="label" id="output-label">Vowel output</div>
+					<textarea rows="5" name="outV" id="outV"></textarea>
+				</div>
+			</div>
+		<p id="messageField" class="message"></p>
+	</form>
+
+  </body>
+</html>
