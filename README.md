@@ -11,6 +11,7 @@ This tool builds random phoneme inventories using some preselected parameters:
 * Minimum and maximum number of consonants
 * Minimum and maximum number of vowels
 * Whether to use a full [IPA](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) list (slightly buggy), or a simpler list of phoneme options
+* What delimiter to use in the output list (default: comma)
 
 ## Features yet to be implemented<a name="features"></a>
 

@@ -81,39 +81,8 @@
   <body>
   <h1>Phoneme inventory generator</h1>
 	<form action="" name="mainForm">
-		<!--<span class="label" id="letter-label">
-			Input letters lists, separated by commas
-		</span>
-		<div class="doublecolrow">
-		<div class="halfcol"><p>
-			<span class="label" id="letter-label">C</span>
-			<textarea rows="2" class="letterstextarea" name="inC"></textarea>
-		</p>
-		<p>
-			<span class="label" id="letter-label">V</span>
-			<textarea rows="2" class="letterstextarea" name="inV"></textarea>
-		</p></div>
-		<div class="halfcol"><p>
-			<span class="label" id="letter-label">I</span>
-			<textarea rows="2" class="letterstextarea" name="inI"></textarea>
-		</p>
-		<p>
-			<span class="label" id="letter-label">M</span>
-			<textarea rows="2" class="letterstextarea" name="inM"></textarea>
-		</p>
-		<p>
-			<span class="label" id="letter-label">F</span>
-			<textarea rows="2" class="letterstextarea" name="inF"></textarea>
-		</p></div>
-		</div>
-		<p>
-			<span class="label" id="structure-label">Syllable structure</span>
-			<textarea rows="1" name="struct" id="struct-area"></textarea>
-		</p>-->
 		<div class="settings-pane">
 			<div class="doublecolrow">
-				<!--<span class="label" id="param-label">Words to generate:</span>
-				<input type="text" name="wordsNum" value="15"></text>-->
 				<div class="halfcol">
 					<span class="nowrap">
 						<span class="label" id="param-label">Min. consonants:</span>
@@ -143,27 +112,15 @@
 					<input type="radio" id="comma" name="source" value="ipa">
 					<label for="ipa">Full IPA</label>
 				</span>
-				<!--&bull;
+				&bull;
 				<span class="nowrap">
-					<span class="label" id="param-label">
-						<label for="hyphenate">Hyphenate between syllables:</label>
-					</span>
-					<input type="checkbox" id="hyphenate" class="checkmark">
+						<span class="label" id="param-label">Delimiter:</span>
+						<input type="text" name="delimiter" value=","></text>
 				</span>
-				<span class="nowrap">
-					<span class="label" id="param-label">
-						<label for="hyphenate">Exclude duplicates:</label>
-					</span>
-					<input type="checkbox" id="noduplicates" class="checkmark" checked>
-				</span>
-			</p>-->
 		</div>
 		<p>
 			<input type=button class="button" value="Generate inventory" 
 				onClick="generate()"/>
-			<!--
-			<input type=button class="button" value="Try example" onClick="example()"/>
-			-->
 			<input type=button class="button" value="Reset" onClick="reset()"/>
 			&bull;
 			<a href="https://github.com/aaa2016/phoneme-inventory-generator" 

@@ -34,14 +34,15 @@ function generate() {
 		var minV = document.forms["mainForm"].minV.value;
 		var maxC = document.forms["mainForm"].maxC.value;
 		var maxV = document.forms["mainForm"].maxV.value;
+		var delimiter = document.forms["mainForm"].delimiter.value;
 		
 		// Check which source the user chooses
 		if (document.forms["mainForm"].source.value == "ipa") {
-			var outC = geninv(ipaC,minC,maxC);
-			var outV = geninv(ipaV,minV,maxV);
+			var outC = geninv(ipaC,minC,maxC,delimiter);
+			var outV = geninv(ipaV,minV,maxV,delimiter);
 		} else { // Use simple as default
-			var outC = geninv(simpleC,minC,maxC);
-			var outV = geninv(simpleV,minV,maxV);
+			var outC = geninv(simpleC,minC,maxC,delimiter);
+			var outV = geninv(simpleV,minV,maxV,delimiter);
 		}
 		
 		// Check for blank outputs (indicative of error)
@@ -65,8 +66,9 @@ function generate() {
 
 /*
 *	Generation algorithm: picks between [quantMin] and [quantMax] items from [list]
+*		using [delim] as a delimiter
 */
-function geninv(list,quantMin,quantMax) {
+function geninv(list,quantMin,quantMax,delim) {
 	
 	var output = "";
 	
@@ -100,8 +102,12 @@ function geninv(list,quantMin,quantMax) {
 				return "";
 			}		
 		} else {
-			// Add to output
-			output += rand+" ";
+			// Add to output - if last one, do not add delimiter
+			if (i<(toGenerate-1)) {
+					output += rand+delim;
+			} else {
+					output += rand;
+			}
 		}
 	}
 	
