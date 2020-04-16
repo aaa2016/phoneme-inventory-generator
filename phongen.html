@@ -13,6 +13,11 @@
 		body {font-family: sans-serif;}
 		h1, form {text-align: center;}
 		a {text-decoration: none;}
+		.mini-link {
+			color: red;
+			vertical-align: super;
+			font-weight: bold;
+		}
 		.button {
  			 background-color: #555555;
  			 border: none;
@@ -62,7 +67,7 @@
   			margin-right: 10%;
   			margin-left: 10%;
   			display: inline-block;
-  			padding: 10px 5px 10px 5px;
+  			padding: 10px 10px 5px 10px;
 		}
 		/* TODO: custom checkbox and radio button style */
 		.halfcol {
@@ -79,38 +84,47 @@
   </head>
 
   <body>
-  <h1>Phoneme inventory generator</h1>
+  	<h1>Phoneme inventory generator</h1>
 	<form action="" name="mainForm">
 		<div class="settings-pane">
 			<div class="doublecolrow">
 				<div class="halfcol">
-					<span class="nowrap">
+					<div class="nowrap">
 						<span class="label" id="param-label">Min. consonants:</span>
 						<input type="text" name="minC" value="5"></text>
-					</span>
-					<span class="nowrap">
+					</div>
+					<div class="nowrap">
 						<span class="label" id="param-label">Max. consonants:</span>
 						<input type="text" name="maxC" value="20"></text>
-					</span>
+					</div>
 				</div>
 				<div class="halfcol">
-					<span class="nowrap">
+					<div class="nowrap">
 						<span class="label" id="param-label">Min. vowels:</span>
 						<input type="text" name="minV" value="3"></text>
-					</span>
-					<span class="nowrap">
+					</div>
+					<div class="nowrap">
 						<span class="label" id="param-label">Max. vowels:</span>
 						<input type="text" name="maxV" value="10"></text>
-					</span>
+					</div>
 				</div>
 			</div>
 			<p>
+				Choose source: 
 				<span class="nowrap">
 					<input type="radio" id="newline" name="source" value="simple" 
 						checked>
 					<label for="simple">Simple</label>
+					<input type="radio" id="comma" name="source" value="sampa">
+					<label for="sampa">X-SAMPA
+				<a class="mini-link" target="_blank"
+				href="https://en.wikipedia.org/wiki/X-SAMPA">
+				?</a></label>
 					<input type="radio" id="comma" name="source" value="ipa">
-					<label for="ipa">Full IPA</label>
+					<label for="ipa">IPA
+				<a class="mini-link" target="_blank"
+				href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet">
+				?</a></label>
 				</span>
 				&bull;
 				<span class="nowrap">

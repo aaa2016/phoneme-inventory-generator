@@ -1,10 +1,17 @@
-// Phoneme lists for global use
+// Phoneme lists for global use (can be strings or arrays)
+// TODO: provide array, to allow for IPA phonemes that are more than one character long
 var ipaC = "pm̥mɱn̼n̥nɳ̊ɳɲ̊ɲŋ̊ŋɴpbp̪b̪t̼d̼tdʈɖcɟkɡqɢʡʔszʃʒʂʐɕʑ\
 ɸβfvθ̼ð̼θðθ̠ð̠ɹ̠̊˔ɹ̠˔ɻ˔çʝxɣχʁħʕhɦʋ̥ʋɹ̥ɹɻ̊ɻj̊jɰ̊ɰʔ̞ⱱ̟ⱱɾ̼ɾ̥ɾɽ̊ɽɢ̆ʡ̆\
 ʙ̥ʙr̥rɽ̊r̥ɽrʀ̥ʀʜʢɬɮɭ̊˔ɭ˔ʎ̝̊ʎ̝ʟ̝̊ʟ̝l̥lɭ̊ɭʎ̥ʎʟ̥ʟʟ̠ɺɭ̆ʎ̆ʟ̆";
 var ipaV = "iyɨʉɯuɪʏʊeøɘɵɤoø̞əo̞ɛœɜɞʌɔæɐaɶäɑɒ";
-var simpleC = "pbtdkg?fvszSZhmnNwrly";
-var simpleV = "iyueoaIYUEOA";
+var sampaC = ["m","F","n","n`","J","N","N\\","p","b","p_d","b_d","t","d","t`","d`","c",
+	"J\\","k","g","q","G\\",">\\","?","p\\","B","f","v","T","D","s","z","S","Z","s`",
+	"z`","C","j\\","x","G","X","R","X\\","?\\","H\\","<\\","h","h\\","B_o","v\\","r\\",
+	"r\\`","j","M\\","B\\","r","R\\","4","r`","K","K\\","l","l`","L","L\\","l\\"];
+var sampaV = ["i","y","1","}","M","u","I","Y","I\\","U\\","U","e","2","@\\","8","7",
+	"o","e_o","2_o","@","o_o","E","9","3","3\\","V","O","{","6","a","&","a_","A","Q"];
+var simpleC = "pbtdkgfvszhmnwrly";
+var simpleV = "iyueoa";
 
 // Tab separated lists, if needed
 /*"pm̥\tm\tɱ\tn̼\tn̥\tn\tɳ̊\tɳ\tɲ̊\
@@ -40,6 +47,9 @@ function generate() {
 		if (document.forms["mainForm"].source.value == "ipa") {
 			var outC = geninv(ipaC,minC,maxC,delimiter);
 			var outV = geninv(ipaV,minV,maxV,delimiter);
+		} else if (document.forms["mainForm"].source.value == "sampa") {
+			var outC = geninv(sampaC,minC,maxC,delimiter);
+			var outV = geninv(sampaV,minV,maxV,delimiter);
 		} else { // Use simple as default
 			var outC = geninv(simpleC,minC,maxC,delimiter);
 			var outV = geninv(simpleV,minV,maxV,delimiter);
