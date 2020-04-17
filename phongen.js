@@ -1,33 +1,88 @@
-// Phoneme lists for global use (can be strings or arrays)
-// TODO: provide array, to allow for IPA phonemes that are more than one character long
-var ipaC = "pm̥mɱn̼n̥nɳ̊ɳɲ̊ɲŋ̊ŋɴpbp̪b̪t̼d̼tdʈɖcɟkɡqɢʡʔszʃʒʂʐɕʑ\
-ɸβfvθ̼ð̼θðθ̠ð̠ɹ̠̊˔ɹ̠˔ɻ˔çʝxɣχʁħʕhɦʋ̥ʋɹ̥ɹɻ̊ɻj̊jɰ̊ɰʔ̞ⱱ̟ⱱɾ̼ɾ̥ɾɽ̊ɽɢ̆ʡ̆\
-ʙ̥ʙr̥rɽ̊r̥ɽrʀ̥ʀʜʢɬɮɭ̊˔ɭ˔ʎ̝̊ʎ̝ʟ̝̊ʟ̝l̥lɭ̊ɭʎ̥ʎʟ̥ʟʟ̠ɺɭ̆ʎ̆ʟ̆";
-var ipaV = "iyɨʉɯuɪʏʊeøɘɵɤoø̞əo̞ɛœɜɞʌɔæɐaɶäɑɒ";
+// PHONEME LISTS for global use (can be strings or arrays)
+
+// IPA
+var ipaC = ["p","m̥","m","ɱ","n̼","n̥","n","ɳ̊","ɳ","ɲ̊","ɲ","ŋ̊","ŋ","ɴ","p","b","p̪",
+"b̪","t̼","d̼","t","d","ʈ","ɖ","c","ɟ","k","ɡ","q","ɢ","ʡ","ʔ","s","z","ʃ","ʒ","ʂ","ʐ",
+"ɕ","ʑ","ɸ","β","f","v","θ̼","ð̼","θ","ð","θ̠","ð̠","ɹ̠̊˔","ɹ̠˔","ɻ˔","ç","ʝ","x","ɣ",
+"χ","ʁ","ħ","ʕ","h","ɦ","ʋ̥","ʋ","ɹ̥","ɹ","ɻ̊","ɻ","j̊","j","ɰ̊","ɰ","ʔ̞","ⱱ̟","ⱱ","ɾ̼",
+"ɾ̥","ɾ","ɽ̊","ɽ","ɢ̆","ʡ̆","ʙ̥","ʙ","r̥","r","ɽ̊","r̥","ɽ","r","ʀ̥","ʀ","ʜ","ʢ","ɬ",
+"ɮ","ɭ̊˔","ɭ˔","ʎ̝̊","ʎ̝","ʟ̝̊","ʟ̝","l̥","l","ɭ̊","ɭ","ʎ̥","ʎ","ʟ̥","ʟ","ʟ̠","ɺ","ɭ̆",
+"ʎ̆","ʟ̆"];
+var ipaV = ["i","y","ɨ","ʉ","ɯ","u","ɪ","ʏ","ʊ","e","ø","ɘ","ɵ","ɤ","o","ø̞","ə","o̞",
+"ɛ","œ","ɜ","ɞ","ʌ","ɔ","æ","ɐ","a","ɶ","ä","ɑ","ɒ"];
+
+// SIMPLE - not linguistically valid, but an easy example to demonstrate the tool
+var simpleC = "pbtdkgfvszhmnwrlj";
+var simpleV = "iyueoa";
+
+/* // X-SAMPA implementation now uses chooseSource() function
 var sampaC = ["m","F","n","n`","J","N","N\\","p","b","p_d","b_d","t","d","t`","d`","c",
 	"J\\","k","g","q","G\\",">\\","?","p\\","B","f","v","T","D","s","z","S","Z","s`",
 	"z`","C","j\\","x","G","X","R","X\\","?\\","H\\","<\\","h","h\\","B_o","v\\","r\\",
 	"r\\`","j","M\\","B\\","r","R\\","4","r`","K","K\\","l","l`","L","L\\","l\\"];
 var sampaV = ["i","y","1","}","M","u","I","Y","I\\","U\\","U","e","2","@\\","8","7",
 	"o","e_o","2_o","@","o_o","E","9","3","3\\","V","O","{","6","a","&","a_","A","Q"];
-var simpleC = "pbtdkgfvszhmnwrly";
-var simpleV = "iyueoa";
+*/
 
-// Tab separated lists, if needed
-/*"pm̥\tm\tɱ\tn̼\tn̥\tn\tɳ̊\tɳ\tɲ̊\
-\tɲ\tŋ̊\tŋ\tɴ\t\n\
-p\tb\tp̪\tb̪\tt̼\td̼\tt\td\tʈ\tɖ\tc\tɟ\tk\tɡ\tq\tɢ\tʡ\tʔ\t\n\
-s\tz\tʃ\tʒ\tʂ\tʐ\tɕ\tʑ\t\n\
-ɸ\tβ\tf\tv\tθ̼\tð̼\tθ\tð\tθ̠\tð̠\tɹ̠̊˔\tɹ̠˔\tɻ˔\tç\tʝ\tx\tɣ\tχ\tʁ\tħ\tʕ\th\tɦ\
-ʋ̥\tʋ\tɹ̥\tɹ\tɻ̊\tɻ\tj̊\tj\tɰ̊\tɰ\tʔ̞\n\
-ⱱ̟\tⱱ\tɾ̼\tɾ̥\tɾ\tɽ̊\tɽ\tɢ̆\tʡ̆\t\n\
-ʙ̥\tʙ\tr̥\tr\tɽ̊r̥\tɽr\tʀ̥\tʀ\tʜ\tʢ\t\n\
-ɬ\tɮ\tɭ̊˔\tɭ˔\tʎ̝̊\tʎ̝\tʟ̝̊\tʟ̝\t\n\
-l̥\tl\tɭ̊\tɭ\tʎ̥\tʎ\tʟ̥\tʟ\tʟ̠\t\n\
-ɺ\tɭ̆\tʎ̆\tʟ̆\t";*/
-/*"i y\tɨ • ʉ\tɯ • u\n\
-ɪ • ʏ\t\t• ʊ\n\e • ø\tɘ • ɵ\tɤ • o\n\ø̞\tə\t• o̞\n\
-ɛ • œ\tɜ • ɞ\tʌ • ɔ\n\æ •\tɐ\n\a • ɶ\tä •\tɑ • ɒ";*/
+/////////////////////////////////
+
+/*
+*	Pick source phoneme list - returns nested arrays: [0] is C, [1] is V
+*/
+
+function chooseSource() {
+	
+	var cList = [];
+	var vList = [];
+	
+	// Note: "\" in X-SAMPA phonemes needs the escape character "\\"
+	
+	// CONSONANTS (unvoiced or voiced)
+	// Plosives
+	var plosUn = ["p","t","c","k","?"];
+	var plosVo = ["b","d","J\\","g"];
+	// Fricatives
+	var fricUn = ["f","T","s","S","h"];
+	var fricVo = ["v","D","z","Z"];
+	// Nasals
+	var nas = ["m","n","J","N"];
+	// Approximants
+	var app = ["w","r//","4","l","j"];
+	// Trills
+	var tri = ["r","R"];
+	// Affricates
+	var aff = ["ts","dz","tS","dZ"];
+	// TODO: Add the more exotic consonant options
+		
+	// Add user selected options to array
+	if (document.getElementById("plosUn").checked) {cList = cList.concat(plosUn);}
+	if (document.getElementById("plosVo").checked) {cList = cList.concat(plosVo);}
+	if (document.getElementById("fricUn").checked) {cList = cList.concat(fricUn);}
+	if (document.getElementById("fricVo").checked) {cList = cList.concat(fricVo);}
+	if (document.getElementById("nas").checked) {cList = cList.concat(nas);}
+	if (document.getElementById("app").checked) {cList = cList.concat(app);}
+	if (document.getElementById("tri").checked) {cList = cList.concat(tri);}
+	if (document.getElementById("aff").checked) {cList = cList.concat(aff);}
+	
+	// VOWELS (rounded or unrounded)
+	// Tense
+	var tenseRo = ["y","}","u","2","8","o","9","3\\","O","&","Q"];
+	var tenseUn = ["i","1","M","e","@\\","7","E","3","V","a",'a_"',"A"];
+	// Lax
+	var laxRo = ["Y","U","2_o","o_o"];
+	var laxUn = ["I","I\\","U\\","e_o","@","{","6"];
+	
+	// Add user selected options to array
+	if (document.getElementById("tenseRo").checked) {vList = vList.concat(tenseRo);}
+	if (document.getElementById("tenseUn").checked) {vList = vList.concat(tenseUn);}
+	if (document.getElementById("laxRo").checked) {vList = vList.concat(laxRo);}
+	if (document.getElementById("laxUn").checked) {vList = vList.concat(laxUn);}
+	
+	var chosenList = [cList,vList];
+	
+	return chosenList;
+
+}
 
 /////////////////////////////////
 
@@ -45,11 +100,13 @@ function generate() {
 		
 		// Check which source the user chooses
 		if (document.forms["mainForm"].source.value == "ipa") {
+			// TODO: implement shopper selector for IPA
 			var outC = geninv(ipaC,minC,maxC,delimiter);
 			var outV = geninv(ipaV,minV,maxV,delimiter);
 		} else if (document.forms["mainForm"].source.value == "sampa") {
-			var outC = geninv(sampaC,minC,maxC,delimiter);
-			var outV = geninv(sampaV,minV,maxV,delimiter);
+			var sampaIn = chooseSource(); // Use shopper selector: [0] is C, [1] is V
+			var outC = geninv(sampaIn[0],minC,maxC,delimiter);
+			var outV = geninv(sampaIn[1],minV,maxV,delimiter);
 		} else { // Use simple as default
 			var outC = geninv(simpleC,minC,maxC,delimiter);
 			var outV = geninv(simpleV,minV,maxV,delimiter);
@@ -138,6 +195,20 @@ function reset() {
 	document.forms["mainForm"].outC.value = "";
 	document.forms["mainForm"].outV.value = "";
 	document.getElementById("messageField").innerHTML = ""; // TODO: not working
+	showHideDiv();
 }
 	
 //////////////////////////////////
+
+/*
+*	Show/hide div element
+*/
+
+function showHideDiv(name) {
+  var x = document.getElementById(name);
+  if (document.forms["mainForm"].source.value == "sampa") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+} 

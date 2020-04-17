@@ -49,7 +49,7 @@
 		.label {
 			padding: 0px 5px;
 		}
-		#letter-label, #output-label {
+		#letter-label, #output-label, .shopper-label {
 			font-weight: bold;
 		}
 		}
@@ -79,6 +79,7 @@
   			display: table;
   			clear: both;
 		}
+		#sourceShopper {display: none;} /* Hidden when page loads */
 	</style>
 
   </head>
@@ -113,14 +114,16 @@
 				Choose source: 
 				<span class="nowrap">
 					<input type="radio" id="newline" name="source" value="simple" 
-						checked>
+						onclick="showHideDiv('sourceShopper')" checked>
 					<label for="simple">Simple</label>
-					<input type="radio" id="comma" name="source" value="sampa">
+					<input type="radio" id="comma" name="source" value="sampa"
+						onclick="showHideDiv('sourceShopper')">
 					<label for="sampa">X-SAMPA
 				<a class="mini-link" target="_blank"
 				href="https://en.wikipedia.org/wiki/X-SAMPA">
 				?</a></label>
-					<input type="radio" id="comma" name="source" value="ipa">
+					<input type="radio" id="comma" name="source" value="ipa"
+						onclick="showHideDiv('sourceShopper')">
 					<label for="ipa">IPA
 				<a class="mini-link" target="_blank"
 				href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet">
@@ -131,11 +134,93 @@
 						<span class="label" id="param-label">Delimiter:</span>
 						<input type="text" name="delimiter" value=","></text>
 				</span>
+			<div id="sourceShopper">
+				<div id="consonants">
+				<div class="shopper-label">Additional X-SAMPA options</div>
+				<span class="shopper-label">Consonants:</span>
+				<span class="nowrap">
+					<input type="checkbox" id="plosVo" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="plosVo">Voiced plosives</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="plosUn" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="plosUn">Unvoiced plosives</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="fricVo" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="fricVo">Voiced fricatives</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="fricUn" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="fricUn">Unvoiced fricatives</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="nas" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="nas">Nasals</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="app" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="app">Approximates</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="tri" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="tri">Trills</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="aff" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="aff">Affricates</label>
+					</span>
+				</span>
+				</div>
+				<div id="vowels">
+				<span class="shopper-label">Vowels:</span>
+				<span class="nowrap">
+					<input type="checkbox" id="tenseRo" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="tenseRo">Tense rounded</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="tenseUn" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="tenseUn">Tense unrounded</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="laxRo" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="laxRo">Lax rounded</label>
+					</span>
+				</span>
+				<span class="nowrap">
+					<input type="checkbox" id="laxUn" class="checkmark" checked>
+					<span class="label" id="param-label">
+						<label for="laxUn">Lax unrounded</label>
+					</span>
+				</span>
+				</div>
+			</div>
 		</div>
 		<p>
 			<input type=button class="button" value="Generate inventory" 
 				onClick="generate()"/>
-			<input type=button class="button" value="Reset" onClick="reset()"/>
+			<input type=button class="button" value="Reset" 
+				onClick="reset();showHideDiv('sourceShopper')"/>
 			&bull;
 			<a href="https://github.com/aaa2016/phoneme-inventory-generator" 
 				target="_blank">Help</a>
